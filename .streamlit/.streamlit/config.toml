@@ -1,0 +1,2 @@
+[server]
+folderWatchBlacklist = ['flowers', 'checkpoint.pth', 'flower_classifier_checkpoint.pth']
