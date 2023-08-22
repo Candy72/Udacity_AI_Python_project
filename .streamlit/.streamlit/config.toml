@@ -1,2 +1,2 @@
 [server]
-folderWatchBlacklist = ['flowers', 'checkpoint.pth', 'flower_classifier_checkpoint.pth']
+folderWatchBlacklist = ['flowers', 'checkpoint.pth', 'flower_classifier_checkpoint.pth'}
