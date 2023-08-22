@@ -53,7 +53,7 @@ def process_image(image_path):
     return image_tensor.unsqueeze_(0)
 
 
-def predict(image_or_path, model, topk, device):
+def predict(image_or_path, model, top_k, device):
     if isinstance(image_or_path, str):
         image = process_image(image_or_path).to(device)
     else:
@@ -72,7 +72,7 @@ def predict(image_or_path, model, topk, device):
     model.eval()
     with torch.no_grad():
         outputs = model(image)
-        probs, indices = outputs.topk(topk)
+        probs, indices = outputs.topk(top_k)
         probs = probs.exp().data.cpu().numpy()[0]
         indices = indices.data.cpu().numpy()[0]
         idx_to_class = {v: k for k, v in model.class_to_idx.items()}
