@@ -40,7 +40,7 @@ def load_checkpoint(filepath):
 
 
 def process_image(image_path):
-    image = PIL.Image.open(image_path)
+    image = PIL.Image.open(image_path).convert("RGB") #Convert image to RGB
     transform = transforms.Compose(
         [
             transforms.Resize(256),
@@ -57,6 +57,7 @@ def predict(image_or_path, model, top_k, device):
     if isinstance(image_or_path, str):
         image = process_image(image_or_path).to(device)
     else:
+        image_or_path = image_or_path.convert("RGB") # Convert image to RGB
         # Convert PIL image to tensor and add match dimension
         transform = transforms.Compose(
             [
