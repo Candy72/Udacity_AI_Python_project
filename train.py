@@ -84,7 +84,7 @@ def main():
         nn.Linear(25088, args.hidden_units),
         nn.ReLU(),
         nn.Dropout(0.2),
-        nn.Linear(args.hidden_units, len(train_data.find_classes)),
+        nn.Linear(args.hidden_units, len(train_data.class_to_idx)),
         nn.LogSoftmax(dim=1),
     )
 
