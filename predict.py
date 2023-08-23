@@ -22,7 +22,7 @@ def get_input_args():
     return parser.parse_args()
 
 
-def load_checkpoint(filepath):
+def load_checkpoint_model(filepath, device):
     checkpoint = torch.load(filepath)
 
     if checkpoint["arch"] == "vgg13":
@@ -36,6 +36,9 @@ def load_checkpoint(filepath):
     model.classifier = checkpoint["classifier"]
     model.load_state_dict(checkpoint["state_dict"])
     model.class_to_idx = checkpoint["class_to_idx"]
+    
+    # Move mode to the specific device
+    model.to(device)
     return model
 
 
@@ -85,7 +88,7 @@ def main():
     args = get_input_args()
     device = torch.device("cuda" if args.gpu and torch.cuda.is_available() else "cpu")
 
-    model = load_checkpoint(args.checkpoint)
+    model = load_checkpoint_model(args.checkpoint, device)
     probs, classes = predict(args.input, model, args.top_k, device)
 
     with open(args.category_names, "r") as f:
