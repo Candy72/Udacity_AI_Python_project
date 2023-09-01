@@ -4,7 +4,7 @@ from PIL import Image
 import json
 
 # Import necessary funcitons from predict.py
-from predict import load_checkpoint_model, predict, process_image
+from predict import load_checkpoint_model, predict #, process_image 
 
 st.title("Welcome to the Flower Classification App!")
 st.write("Please upload a flower image, and the app will predict its class of flower.")
@@ -21,8 +21,8 @@ if uploaded_file is not None:
 
     image = Image.open(uploaded_file)
     # Process the image
-    image_tensor = process_image(uploaded_file)
-    st.write(f"Preprocessed Image Tensor: {image_tensor}")
+    # image_tensor = process_image(uploaded_file)
+    # st.write(f"Preprocessed Image Tensor: {image_tensor}")
     st.image(image, caption="Uploaded Image", use_column_width=True)
     st.write("")
     st.write("Predicting...")
